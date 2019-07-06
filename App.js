@@ -1,12 +1,6 @@
-import React, { Component } from 'react';
-import FormLogin from './src/components/FormLogin';
+import React from 'react';
+import Routes from './src/Routes';
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <FormLogin />
-    );
-  }
-}
-
+export default props => (
+  <Routes />
+);
