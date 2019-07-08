@@ -1,12 +1,14 @@
 import React from 'react';
-import { Router, Scene } from 'react-native-router-flux';
+import { Router, Scene, Stack } from 'react-native-router-flux';
 
 import FormLogin from './components/FormLogin';
-import FormCadastro from './components/FormCadastro';
+import FormRegister from './components/FormRegister';
 
 export default props => (
     <Router>
-        <Scene key='formLogin' component={FormLogin} title="Login" />
-        <Scene key='formCadastro' component={FormCadastro} title="Cadastro" />
+        <Stack key="root" >
+            <Scene key='formLogin' component={FormLogin} title="Login" />
+            <Scene key='formRegister' component={FormRegister} title="formRegister" />
+        </Stack>
     </Router>
 );
