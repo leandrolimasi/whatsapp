@@ -18,7 +18,7 @@ const formLogin = props => {
             </View >
             <View style={{ flex: 2 }}>
                 <TextInput value={props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail' onChangeText={text => props.modifyEmail(text)} />
-                <TextInput value={props.password} style={{ fontSize: 20, height: 45 }} placeholder='Password' onChangeText={text => props.modifyPassword(text)} />
+                <TextInput secureTextEntry value={props.password} style={{ fontSize: 20, height: 45 }} placeholder='Password' onChangeText={text => props.modifyPassword(text)} />
                 <TouchableHighlight onPress={() => Actions.formRegister()}>
                     <Text style={{ fontSize: 20 }}> Join us? Sign Up</Text >
                 </TouchableHighlight>
