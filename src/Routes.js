@@ -8,7 +8,7 @@ export default props => (
     <Router>
         <Stack key="root" >
             <Scene key='formLogin' component={FormLogin} title="Login" />
-            <Scene key='formRegister' component={FormRegister} title="formRegister" />
+            <Scene key='formRegister' component={FormRegister} title="Register" />
         </Stack>
     </Router>
 );
