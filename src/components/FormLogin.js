@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight, ImageBackground } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableHighlight, ImageBackground } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { modifyEmail, modifyPassword } from '../actions/AuthenticationAction';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
     button: {
@@ -25,7 +27,7 @@ const formLogin = props => {
                     </TouchableHighlight>
                 </View >
                 <View style={{ flex: 2 }} >
-                    <Button title="Log In" style={styles.button} onPress={() => false} />
+                    <Button title="Log In" buttonStyle={styles.button} onPress={() => false} />
                 </View >
             </View >
         </ImageBackground>
