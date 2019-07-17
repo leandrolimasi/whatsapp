@@ -41,7 +41,8 @@ const registerUserSuccess = (dispatch) => {
 const registerUserError = (error, dispatch) => {
     dispatch(
         {
-            type: 'register_user_error'
+            type: 'register_user_error',
+            payload: error.message
         }
     )
 }

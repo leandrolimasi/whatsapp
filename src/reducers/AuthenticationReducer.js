@@ -1,7 +1,8 @@
 const INITIAL_STATE = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    registerError: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -13,6 +14,9 @@ export default (state = INITIAL_STATE, action) => {
     }
     if (action.type === 'modify_name') {
         return { ...state, name: action.payload }
+    }
+    if (action.type === 'register_user_error') {
+        return { ...state, registerError: action.payload }
     }
     return state;
 }
