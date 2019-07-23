@@ -29,7 +29,7 @@ export const registerUser = ({ name, email, password }) => {
             .createUserWithEmailAndPassword(email, password)
             .then(user => {
                 let email64 = base64.encode(email);
-                firebase.database().ref('/contact/' + email64).push({ name }).then(value => registerUserSuccess(dispatch))
+                firebase.database().ref(`/contact/${email64}`).push({ name }).then(value => registerUserSuccess(dispatch))
                     .catch(error => registerUserError(error, dispatch));
 
             })
