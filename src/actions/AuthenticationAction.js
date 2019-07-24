@@ -37,16 +37,28 @@ export const registerUser = ({ name, email, password }) => {
     }
 }
 
+export const authenticate = ({ email, password }) => {
+    return dispatch => {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(value => authenticateSuccess(dispatch))
+            .catch(error => authenticateError(error, dispatch));
+    }
+}
+
 const registerUserSuccess = (dispatch) => {
-    dispatch({ type: 'register_user_success' })
+    dispatch({ type: 'register_user_success' });
     Actions.welcome();
 }
 
 const registerUserError = (error, dispatch) => {
-    dispatch(
-        {
-            type: 'register_user_error',
-            payload: error.message
-        }
-    )
+    dispatch({ type: 'register_user_error', payload: error.message });
+}
+
+const authenticateSuccess = (dispatch) => {
+    dispatch({ type: 'authenticate_success' });
+    //Actions.home();
+}
+
+const authenticateError = (error, dispatch) => {
+    dispatch({ type: 'authenticate_error', payload: error.message });
 }

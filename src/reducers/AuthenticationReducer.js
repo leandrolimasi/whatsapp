@@ -2,7 +2,8 @@ const INITIAL_STATE = {
     name: '',
     email: '',
     password: '',
-    registerError: ''
+    registerError: '',
+    authenticateError: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -20,6 +21,9 @@ export default (state = INITIAL_STATE, action) => {
     }
     if (action.type === 'register_user_success') {
         return { ...state, name: '', password: '' }
+    }
+    if (action.type === 'authenticate_error') {
+        return { ...state, authenticateError: action.payload }
     }
     return state;
 }

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableHighlight, ImageBackground } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { modifyEmail, modifyPassword } from '../actions/AuthenticationAction';
+import { modifyEmail, modifyPassword, authenticate } from '../actions/AuthenticationAction';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -12,33 +12,45 @@ const styles = StyleSheet.create({
     }
 })
 
-const formLogin = props => {
-    return (
-        <ImageBackground style={{ flex: 1, width: null }} source={require('../img/bg.png')}>
-            <View style={{ flex: 1, padding: 10 }}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontSize: 25, backgroundColor: 'transparent', color: '#fff' }} > WhatsApp Clone</Text >
+class FormLogin extends Component {
+
+    _authenticate() {
+        const { email, password } = this.props;
+        this.props.authenticate({ email, password });
+    }
+
+    render() {
+        return (
+            <ImageBackground style={{ flex: 1, width: null }} source={require('../img/bg.png')}>
+                <View style={{ flex: 1, padding: 10 }}>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 25, backgroundColor: 'transparent', color: '#fff' }} > WhatsApp Clone</Text >
+                    </View >
+                    <View style={{ flex: 2 }}>
+                        <TextInput value={this.props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail' placeholderTextColor="#fff" onChangeText={text => this.props.modifyEmail(text)} />
+                        <TextInput secureTextEntry value={this.props.password} style={{ fontSize: 20, height: 45 }} placeholder='Password' placeholderTextColor="#fff" placeHolderTextColor="#fff" onChangeText={text => this.props.modifyPassword(text)} />
+                        <TouchableHighlight onPress={() => Actions.formRegister()}>
+                            <Text style={{ fontSize: 20, color: '#fff' }}> Join us? Sign Up</Text >
+                        </TouchableHighlight>
+                    </View >
+                    <Text style={{ color: '#ff0000', fontSize: 18 }}>
+                        {this.props.authenticateError}
+                    </Text>
+                    <View style={{ flex: 2 }} >
+                        <Button title="Log In" buttonStyle={styles.button} onPress={() => this._authenticate()} />
+                    </View >
                 </View >
-                <View style={{ flex: 2 }}>
-                    <TextInput value={props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail' placeholderTextColor="#fff" onChangeText={text => props.modifyEmail(text)} />
-                    <TextInput secureTextEntry value={props.password} style={{ fontSize: 20, height: 45 }} placeholder='Password' placeholderTextColor="#fff" placeHolderTextColor="#fff" onChangeText={text => props.modifyPassword(text)} />
-                    <TouchableHighlight onPress={() => Actions.formRegister()}>
-                        <Text style={{ fontSize: 20, color: '#fff' }}> Join us? Sign Up</Text >
-                    </TouchableHighlight>
-                </View >
-                <View style={{ flex: 2 }} >
-                    <Button title="Log In" buttonStyle={styles.button} onPress={() => false} />
-                </View >
-            </View >
-        </ImageBackground>
-    );
+            </ImageBackground>
+        );
+    }
 }
 
 const mapStateToProps = state => (
     {
         email: state.AuthenticationReducer.email,
-        password: state.AuthenticationReducer.password
+        password: state.AuthenticationReducer.password,
+        authenticateError: state.AuthenticationReducer.authenticateError,
     }
 )
 
-export default connect(mapStateToProps, { modifyEmail, modifyPassword })(formLogin);
+export default connect(mapStateToProps, { modifyEmail, modifyPassword, authenticate })(FormLogin);
