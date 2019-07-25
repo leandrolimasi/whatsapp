@@ -5,10 +5,11 @@ import ReduxThunk from 'redux-thunk';
 import Routes from './src/Routes';
 import reducers from './src/reducers';
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 class App extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyCOdgoOv0bVa-ElYZpesxXeJuwqzUjGUxo",
@@ -21,6 +22,7 @@ class App extends Component {
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    
   }
 
   render() {

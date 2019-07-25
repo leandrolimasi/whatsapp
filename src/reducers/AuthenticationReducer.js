@@ -25,5 +25,8 @@ export default (state = INITIAL_STATE, action) => {
     if (action.type === 'authenticate_error') {
         return { ...state, authenticateError: action.payload }
     }
+    if (action.type === 'authenticate_success') {
+        return { ...state, authenticateError: '' }
+    }
     return state;
 }

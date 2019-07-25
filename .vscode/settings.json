@@ -1,3 +1,9 @@
 {
-    "javascript.validate.enable": false
+    "javascript.validate.enable": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 100,
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSaveTimeout": 75,
+    "editor.formatOnSave": true
 }
