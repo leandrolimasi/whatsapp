@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableHighlight, ImageBackground } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { modifyEmail, modifyPassword, authenticateUser, startAuthListener } from '../actions/AuthenticationAction';
+import { modifyEmail, modifyPassword, authenticateUser } from '../actions/AuthenticationAction';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
