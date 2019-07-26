@@ -1,24 +1,33 @@
 import firebase from "firebase";
 import { Actions } from "react-native-router-flux";
 import base64 from "base-64";
+import {
+  MODIFY_EMAIL,
+  MODIFY_PASSWORD,
+  MODIFY_NAME,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_ERROR,
+  AUTHENTICATE_SUCCESS,
+  AUTHENTICATE_ERROR
+} from '../constants/TypeConstants';
 
 export const modifyEmail = text => {
   return {
-    type: "modify_email",
+    type: MODIFY_EMAIL,
     payload: text
   };
 };
 
 export const modifyPassword = text => {
   return {
-    type: "modify_password",
+    type: MODIFY_PASSWORD,
     payload: text
   };
 };
 
 export const modifyName = text => {
   return {
-    type: "modify_name",
+    type: MODIFY_NAME,
     payload: text
   };
 };
@@ -56,26 +65,26 @@ export const authenticateUser = ({ email, password }) => {
 
 const registerUserSuccess = () => {
   return {
-    type: "register_user_success"
+    type: REGISTER_USER_SUCCESS
   };
 };
 
 const registerUserError = error => {
   return {
-    type: "register_user_error",
+    type: REGISTER_USER_ERROR,
     payload: error.message
   };
 };
 
 const authenticateUserSuccess = value => {
   return {
-    type: "authenticate_success"
+    type: AUTHENTICATE_SUCCESS
   };
 };
 
 const authenticateError = error => {
   return {
-    type: "authenticate_error",
+    type: AUTHENTICATE_ERROR,
     payload: error.message
   };
 };

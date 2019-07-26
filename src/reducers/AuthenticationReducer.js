@@ -1,3 +1,13 @@
+import {
+    MODIFY_EMAIL,
+    MODIFY_PASSWORD,
+    MODIFY_NAME,
+    REGISTER_USER_SUCCESS,
+    REGISTER_USER_ERROR,
+    AUTHENTICATE_SUCCESS,
+    AUTHENTICATE_ERROR,
+} from '../constants/TypeConstants';
+
 const INITIAL_STATE = {
     name: '',
     email: '',
@@ -8,13 +18,13 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'modify_email': return { ...state, email: action.payload }
-        case 'modify_password': return { ...state, password: action.payload }
-        case 'modify_name': return { ...state, name: action.payload }
-        case 'register_user_error': return { ...state, registerError: action.payload }
-        case 'register_user_success': return { ...state, name: '', password: '' }
-        case 'authenticate_error': return { ...state, authenticateError: action.payload }
-        case 'authenticate_success': return { ...state, authenticateError: '' }
+        case MODIFY_EMAIL: return { ...state, email: action.payload }
+        case MODIFY_PASSWORD: return { ...state, password: action.payload }
+        case MODIFY_NAME: return { ...state, name: action.payload }
+        case REGISTER_USER_ERROR: return { ...state, registerError: action.payload }
+        case REGISTER_USER_SUCCESS: return { ...state, name: '', password: '' }
+        case AUTHENTICATE_ERROR: return { ...state, authenticateError: action.payload }
+        case AUTHENTICATE_SUCCESS: return { ...state, authenticateError: '' }
         default: return state;
     }
 }
