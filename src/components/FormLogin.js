@@ -27,7 +27,7 @@ class FormLogin extends Component {
                         <Text style={{ fontSize: 25, backgroundColor: 'transparent', color: '#fff' }} > WhatsApp Clone</Text >
                     </View >
                     <View style={{ flex: 2 }}>
-                        <TextInput value={this.props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail' placeholderTextColor="#fff" onChangeText={text => this.props.modifyEmail(text)} />
+                        <TextInput autoCapitalize = 'none' value={this.props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail' placeholderTextColor="#fff" onChangeText={text => this.props.modifyEmail(text)} />
                         <TextInput secureTextEntry value={this.props.password} style={{ fontSize: 20, height: 45 }} placeholder='Password' placeholderTextColor="#fff" placeHolderTextColor="#fff" onChangeText={text => this.props.modifyPassword(text)} />
                         <TouchableHighlight onPress={() => Actions.formRegister()}>
                             <Text style={{ fontSize: 20, color: '#fff' }}> Join us? Sign Up</Text >
