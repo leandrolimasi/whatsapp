@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableHighlight, ImageBackground } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableHighlight, ImageBackground, ActivityIndicator } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { modifyEmail, modifyPassword, authenticateUser } from '../actions/AuthenticationAction';
@@ -19,6 +19,17 @@ class FormLogin extends Component {
         this.props.authenticateUser({ email, password });
     }
 
+    renderBtnLogin() {
+        if (this.props.loadingLogin) {
+            return (
+                <ActivityIndicator size="large" />
+            )
+        }
+        return (
+            <Button title="Log In" buttonStyle={styles.button} onPress={() => this._authenticate()} />
+        )
+    }
+
     render() {
         return (
             <ImageBackground style={{ flex: 1, width: null }} source={require('../img/bg.png')}>
@@ -27,7 +38,7 @@ class FormLogin extends Component {
                         <Text style={{ fontSize: 25, backgroundColor: 'transparent', color: '#fff' }} > WhatsApp Clone</Text >
                     </View >
                     <View style={{ flex: 2 }}>
-                        <TextInput autoCapitalize = 'none' value={this.props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail' placeholderTextColor="#fff" onChangeText={text => this.props.modifyEmail(text)} />
+                        <TextInput autoCapitalize='none' value={this.props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail' placeholderTextColor="#fff" onChangeText={text => this.props.modifyEmail(text)} />
                         <TextInput secureTextEntry value={this.props.password} style={{ fontSize: 20, height: 45 }} placeholder='Password' placeholderTextColor="#fff" placeHolderTextColor="#fff" onChangeText={text => this.props.modifyPassword(text)} />
                         <TouchableHighlight onPress={() => Actions.formRegister()}>
                             <Text style={{ fontSize: 20, color: '#fff' }}> Join us? Sign Up</Text >
@@ -37,7 +48,7 @@ class FormLogin extends Component {
                         {this.props.authenticateError}
                     </Text>
                     <View style={{ flex: 2 }} >
-                        <Button title="Log In" buttonStyle={styles.button} onPress={() => this._authenticate()} />
+                        {this.renderBtnLogin()}
                     </View >
                 </View >
             </ImageBackground>
@@ -50,6 +61,7 @@ const mapStateToProps = state => (
         email: state.AuthenticationReducer.email,
         password: state.AuthenticationReducer.password,
         authenticateError: state.AuthenticationReducer.authenticateError,
+        loadingLogin: state.AuthenticationReducer.loadingLogin
     }
 )
 

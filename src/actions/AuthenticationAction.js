@@ -7,8 +7,10 @@ import {
   MODIFY_NAME,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
+  REGISTER_LOADING,
   AUTHENTICATE_SUCCESS,
-  AUTHENTICATE_ERROR
+  AUTHENTICATE_ERROR,
+  AUTHENTICATE_LOADING
 } from '../constants/TypeConstants';
 
 export const modifyEmail = text => {
@@ -34,11 +36,13 @@ export const modifyName = text => {
 
 export const registerUser = ({ name, email, password }) => {
   return dispatch => {
+    dispatch({ type: REGISTER_LOADING });
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(user => {
         let email64 = base64.encode(email);
+        console.log(email64);
         firebase.database().ref(`/contact/${email64}`).push({ name })
           .then(value => {
             dispatch(registerUserSuccess());
@@ -47,12 +51,13 @@ export const registerUser = ({ name, email, password }) => {
           .catch(error => {
             dispatch(registerUserError(error));
           });
-      }).catch(error => registerUserError(error, dispatch));
+      }).catch(error => dispatch(registerUserError(error)));
   };
 };
 
 export const authenticateUser = ({ email, password }) => {
   return dispatch => {
+    dispatch({ type: AUTHENTICATE_LOADING });
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => {
         dispatch(authenticateUserSuccess(user));
