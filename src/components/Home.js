@@ -1,14 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
-
-const ChatRoute = () => (
-    <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
-);
-
-const ContactRoute = () => (
-    <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
-);
+import TabBarMenu from './TabBarMenu';
+import Contacts from './Contacts';
+import Chats from './Chats';
 
 export default class Home extends Component {
     state = {
@@ -19,13 +14,16 @@ export default class Home extends Component {
         ],
     };
 
+    _renderTabBar = props => <TabBarMenu {...props} />
+
     render() {
         return (
             <TabView
                 navigationState={this.state}
+                renderTabBar={this._renderTabBar}
                 renderScene={SceneMap({
-                    first: ChatRoute,
-                    second: ContactRoute,
+                    first: Chats,
+                    second: Contacts,
                 })}
                 onIndexChange={index => this.setState({ index })}
                 initialLayout={{ width: Dimensions.get('window').width }}
