@@ -5,14 +5,16 @@ import FormLogin from './components/FormLogin';
 import FormRegister from './components/FormRegister';
 import Welcome from './components/Welcome';
 import Home from './components/Home';
+import AddContacts from './components/AddContacts';
 
 export default props => (
     <Router navigationBarStyle={{backgroundColor: '#115E54'}} titleStyle={{color: '#FFF'}}>
         <Stack key="root" >
             <Scene key='formLogin' component={FormLogin} title="Login" hideNavBar={true} />
             <Scene key='formRegister' component={FormRegister} title="Register" hideNavBar={false} />
-            <Scene key='welcome' component={Welcome} title="Welcome" />
-            <Scene key='home' component={Home} title="Home" initial/>
+            <Scene key='welcome' component={Welcome} title="Welcome" hideNavBar={true} />
+            <Scene key='home' component={Home} title="Home" initial hideNavBar={true} />
+            <Scene key='addContacts' component={AddContacts} title="Add Contacts" hideNavBar={false} />
         </Stack>
     </Router>
 );

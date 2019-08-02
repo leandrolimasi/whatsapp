@@ -31,7 +31,7 @@ class FormRegister extends Component {
 
     render() {
         return (
-            <ImageBackground style={{ flex: 1, width: null }} source={require('../img/bg.png')}>
+            <ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
                 <View style={{ flex: 1, padding: 10 }}>
                     <View style={{ flex: 4, justifyContent: 'center' }}>
                         <TextInput value={this.props.name} placeholder="Name" placeHolderTextColor="#fff" placeholderTextColor="#fff" style={{ fontSize: 20, height: 45 }} onChangeText={text => this.props.modifyName(text)} />

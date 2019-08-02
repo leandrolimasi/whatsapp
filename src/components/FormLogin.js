@@ -32,7 +32,7 @@ class FormLogin extends Component {
 
     render() {
         return (
-            <ImageBackground style={{ flex: 1, width: null }} source={require('../img/bg.png')}>
+            <ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
                 <View style={{ flex: 1, padding: 10 }}>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 25, backgroundColor: 'transparent', color: '#fff' }} > WhatsApp Clone</Text >
