@@ -7,3 +7,5 @@ export const REGISTER_LOADING = 'register_loading';
 export const AUTHENTICATE_SUCCESS = 'authenticate_success';
 export const AUTHENTICATE_ERROR = 'authenticate_error';
 export const AUTHENTICATE_LOADING = 'authenticate_loading';
+export const MODIFY_ADD_CONTACT_EMAIL = 'modify_add_contact_email';
+export const ADD_CONTACT = 'add_contact';
