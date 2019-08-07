@@ -1,13 +1,16 @@
-import { MODIFY_ADD_CONTACT_EMAIL } from '../constants/TypeConstants';
+import { MODIFY_ADD_CONTACT_EMAIL, ADD_CONTACT_ERROR } from '../constants/TypeConstants';
 
 const INITIAL_STATE = {
-    addContactEmail: ''
+    addContactEmail: '',
+    addContactError: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case MODIFY_ADD_CONTACT_EMAIL:
             return { ...state, addContactEmail: action.payload }
+        case ADD_CONTACT_ERROR:
+            return { ...state, addContactError: action.payload }
         default: return state;
     }
 }

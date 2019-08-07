@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { modifyAddContactEmail, addContact } from '../actions/AppActions';
@@ -19,7 +19,11 @@ const AddContact = props => (
         </View>
 
         <View style={{ flex: 1 }}>
-            <Button buttonStyle={{ backgroundColor: "#115e54" }} title="Adicionar" onPress={() => props.addContact(props.addContactEmail)} />
+            <Button buttonStyle={{ backgroundColor: "#115e54" }} title="Add" onPress={() => props.addContact(props.addContactEmail)} />
+
+            <Text style={{ fontSize: 20, color: "#FF0000"}}>
+                {props.addContactError}
+            </Text>
         </View>
 
     </View>
@@ -28,7 +32,8 @@ const AddContact = props => (
 
 const mapStateToProps = state => (
     {
-        addContactEmail: state.AppReducer.addContactEmail
+        addContactEmail: state.AppReducer.addContactEmail,
+        addContactError: state.AppReducer.addContactError
     }
 )
 
