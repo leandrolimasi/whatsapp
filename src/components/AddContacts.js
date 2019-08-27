@@ -1,39 +1,63 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { View, TextInput, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { modifyAddContactEmail, addContact } from '../actions/AppActions';
 
-const AddContact = props => (
-    <View style={{ flex: 1, justifyContent: 'center', padding: 40 }}>
+class AddContact extends Component {
 
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-            <TextInput
-                autoCapitalize='none'
-                placeholder='E-mail'
-                style={{ fontSize: 20, height: 45 }}
-                value={props.addContactEmail}
-                onChangeText={(text) => props.modifyAddContactEmail(text)}
-                onChange={() => false}
-            />
-        </View>
+    renderAddContact() {
+        if (!this.props.contactRegisterResult) {
+            return (
+                <View style={{ flex: 1 }}>
 
-        <View style={{ flex: 1 }}>
-            <Button buttonStyle={{ backgroundColor: "#115e54" }} title="Add" onPress={() => props.addContact(props.addContactEmail)} />
+                    <View style={{ flex: 1, justifyContent: 'center' }}>
+                        <TextInput
+                            autoCapitalize='none'
+                            placeholder='E-mail'
+                            style={{ fontSize: 20, height: 45 }}
+                            value={this.props.addContactEmail}
+                            onChangeText={(text) => this.props.modifyAddContactEmail(text)}
+                            onChange={() => false}
+                        />
+                    </View>
 
-            <Text style={{ fontSize: 20, color: "#FF0000"}}>
-                {props.addContactError}
-            </Text>
-        </View>
+                    <View style={{ flex: 1 }}>
+                        <Button buttonStyle={{ backgroundColor: "#115e54" }} title="Add" onPress={() => this.props.addContact(this.props.addContactEmail)} />
 
-    </View>
-)
+                        <Text style={{ fontSize: 20, color: "#FF0000" }}>
+                            {this.props.addContactError}
+                        </Text>
+                    </View>
 
+                </View>
+            )
+        } else {
+
+            return (
+                <View>
+                    <Text style={{fontSize: 20}}>
+                        Contact Register Sucessfully!
+                    </Text>
+                </View>
+            )
+            
+        }
+    }
+    render() {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', padding: 40 }}>
+                {this.renderAddContact()}
+            </View>
+        )
+    }
+}
 
 const mapStateToProps = state => (
     {
         addContactEmail: state.AppReducer.addContactEmail,
-        addContactError: state.AppReducer.addContactError
+        addContactError: state.AppReducer.addContactError,
+        contactRegisterResult: state.AppReducer.contactRegisterResult
     }
 )
 

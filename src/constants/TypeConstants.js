@@ -10,3 +10,4 @@ export const AUTHENTICATE_LOADING = 'authenticate_loading';
 export const MODIFY_ADD_CONTACT_EMAIL = 'modify_add_contact_email';
 export const ADD_CONTACT = 'add_contact';
 export const ADD_CONTACT_ERROR = 'add_contact_error';
+export const ADD_CONTACT_SUCCESS = 'add_contact_success';
