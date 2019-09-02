@@ -13,7 +13,7 @@ export default (state = INITIAL_STATE, action) => {
         case ADD_CONTACT_ERROR:
             return { ...state, addContactError: action.payload }
         case ADD_CONTACT_SUCCESS:
-            return { ...state, contactRegisterResult: true }
+            return { ...state, contactRegisterResult: action.payload, addContactEmail: '' }
         default: return state;
     }
 }

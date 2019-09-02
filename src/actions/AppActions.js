@@ -38,5 +38,9 @@ const addContactError = (error, dispatch) => {
 }
 
 const addContactSuccess = (dispatch) => {
-    dispatch({ type: ADD_CONTACT_SUCCESS })
+    dispatch({ type: ADD_CONTACT_SUCCESS, payload: true })
+}
+
+export const enableContactRegister = () => {
+    return { type: ADD_CONTACT_SUCCESS, payload: false }
 }
