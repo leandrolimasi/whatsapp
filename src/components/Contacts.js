@@ -8,9 +8,7 @@ class Contacts extends Component {
 
     constructor(props) {
         super(props);
-
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
-        this.state = { dataSource: ds.cloneWithRows([]) };
+        this.state = [];
     }
 
     componentWillMount() {
@@ -19,12 +17,11 @@ class Contacts extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this._createDataSource(this.props.contacts);
+        this._createDataSource(nextProps.contacts);
     }
 
     _createDataSource(contacts) {
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
-        this.dataSource =  ds.cloneWithRows(contacts);
+        this.dataSource =  contacts
     }
 
     render() {
@@ -43,6 +40,7 @@ class Contacts extends Component {
 }
 
 const mapStateToProps = state => {
+    debugger;
     const contacts = _.map(state.ContactListReducer, (val, uid) => {
         return { ...val, uid }
     });
