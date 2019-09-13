@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { contactUserFetch } from '../actions/AppActions';
 import _ from 'lodash';
-import { thisExpression } from '@babel/types';
+import { Actions } from 'react-native-router-flux';
 
 class Contacts extends Component {
 
@@ -20,15 +20,22 @@ class Contacts extends Component {
         this.setState({ contacts });
     }
 
+    _renderItem(data) {
+        return (
+            <TouchableHighlight onPress={() => Actions.message()}>
+                <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#CCC' }}>
+                    <Text style={{ fontSize: 25 }}>{data.item.name}</Text>
+                    <Text style={{ fontSize: 18 }}>{data.item.email}</Text>
+                </View>
+            </TouchableHighlight>
+        )
+    }
+
     render() {
         return (
             <FlatList
                 data={this.state.contacts}
-                renderItem={({ item }) =>
-                    <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#CCC' }}>
-                        <Text style={{ fontSize: 25 }}>{item.name}</Text>
-                        <Text style={{ fontSize: 18 }}>{item.email}</Text>
-                    </View>}
+                renderItem={this._renderItem}
             />
         )
     }
