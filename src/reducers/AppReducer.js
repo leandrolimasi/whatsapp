@@ -1,9 +1,10 @@
-import { MODIFY_ADD_CONTACT_EMAIL, ADD_CONTACT_ERROR, ADD_CONTACT_SUCCESS } from '../constants/TypeConstants';
+import { MODIFY_ADD_CONTACT_EMAIL, ADD_CONTACT_ERROR, ADD_CONTACT_SUCCESS, MODIFY_MESSAGE } from '../constants/TypeConstants';
 
 const INITIAL_STATE = {
     addContactEmail: '',
     addContactError: '',
-    contactRegisterResult: false
+    contactRegisterResult: false,
+    message: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -14,6 +15,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, addContactError: action.payload }
         case ADD_CONTACT_SUCCESS:
             return { ...state, contactRegisterResult: action.payload, addContactEmail: '' }
+        case MODIFY_MESSAGE:
+            return { ...state, message: action.payload}
         default: return state;
     }
 }

@@ -22,7 +22,7 @@ class Contacts extends Component {
 
     _renderItem(data) {
         return (
-            <TouchableHighlight onPress={() => Actions.message()}>
+            <TouchableHighlight onPress={() => Actions.message({ title: data.item.name, contactName: data.item.name, contactEmail: data.item.email })}>
                 <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#CCC' }}>
                     <Text style={{ fontSize: 25 }}>{data.item.name}</Text>
                     <Text style={{ fontSize: 18 }}>{data.item.email}</Text>

@@ -12,3 +12,5 @@ export const ADD_CONTACT = 'add_contact';
 export const ADD_CONTACT_ERROR = 'add_contact_error';
 export const ADD_CONTACT_SUCCESS = 'add_contact_success';
 export const LIST_CONTACT_USER = 'list_contact_user';
+export const MODIFY_MESSAGE = 'modify_message';
+export const SEND_MESSAGE = 'send_message';

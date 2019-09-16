@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import base64 from "base-64";
 import _ from 'lodash';
-import { MODIFY_ADD_CONTACT_EMAIL, ADD_CONTACT, ADD_CONTACT_ERROR, ADD_CONTACT_SUCCESS, LIST_CONTACT_USER } from '../constants/TypeConstants';
+import { MODIFY_ADD_CONTACT_EMAIL, ADD_CONTACT, ADD_CONTACT_ERROR, ADD_CONTACT_SUCCESS, LIST_CONTACT_USER, MODIFY_MESSAGE } from '../constants/TypeConstants';
 
 export const modifyAddContactEmail = (text) => {
     return {
@@ -23,7 +23,7 @@ export const addContact = email => {
                     let emailUserB64 = base64.encode(currentUser.email);
                     firebase.database().ref(`/contact_user/${emailUserB64}`)
                         .push({ email, name: userData.name })
-                        .then(() => { addContactSuccess(dispatch);})
+                        .then(() => { addContactSuccess(dispatch); })
                         .catch(error => { addContactError(error.message, dispatch); });
 
                 } else {
@@ -53,5 +53,24 @@ export const contactUserFetch = (dispatch) => {
             .on('value', snapshot => {
                 dispatch({ type: LIST_CONTACT_USER, payload: snapshot.val() });
             });
+    }
+}
+
+export const modifyMessage = text => {
+    return { type: MODIFY_MESSAGE, payload: text };
+}
+
+export const sendMessage = (message, contactName, contactEmail) => {
+    const { currentUser } = firebase.auth();
+    const userEmail = currentUser.email;
+
+    return dispatch => {
+
+        const userEmailB64 = base64.encode(userEmail);
+        const contactEmailB64 = base64.encode(contactEmail);
+
+        firebase.database().ref(`/message/${userEmailB64}/${contactEmailB64}`).push({ message, type: 'e' }).then(() => {
+            firebase.database().ref(`/message/${contactEmailB64}/${userEmailB64}`).push({ message, type: 'r' }).then(() => dispatch({ type: SEND_MESSAGE, payload: message }));
+        })
     }
 }
