@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import base64 from "base-64";
 import _ from 'lodash';
-import { MODIFY_ADD_CONTACT_EMAIL, ADD_CONTACT, ADD_CONTACT_ERROR, ADD_CONTACT_SUCCESS, LIST_CONTACT_USER, MODIFY_MESSAGE, SEND_MESSAGE } from '../constants/TypeConstants';
+import { MODIFY_ADD_CONTACT_EMAIL, ADD_CONTACT, ADD_CONTACT_ERROR, ADD_CONTACT_SUCCESS, LIST_CONTACT_USER, MODIFY_MESSAGE, SEND_MESSAGE, LIST_MESSAGE_USER } from '../constants/TypeConstants';
 
 export const modifyAddContactEmail = (text) => {
     return {
@@ -96,5 +96,19 @@ export const sendMessage = (message, contactName, contactEmail) => {
 
                     }); 
             });
+    }
+}
+
+export const chatsUserFetch = contactEmail => {
+
+    const { currentUser } = firebase.auth();
+    const userMailB64 = base64.encode(currentUser.email);
+    const contactEmailB64 = base64.encode(contactEmail);
+
+    return dispatch => {
+        firebase.database().ref(`messages/${userMailB64}/${contactEmailB64}`)
+            .on("value", snapshot => {
+                dispatch({ type: LIST_MESSAGE_USER , payload: snapshot.val()})
+            })
     }
 }

@@ -14,3 +14,4 @@ export const ADD_CONTACT_SUCCESS = 'add_contact_success';
 export const LIST_CONTACT_USER = 'list_contact_user';
 export const MODIFY_MESSAGE = 'modify_message';
 export const SEND_MESSAGE = 'send_message';
+export const LIST_MESSAGE_USER = 'list_message_user';
