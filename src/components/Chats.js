@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { View, Text, FlatList } from 'react-native';
 
-export default props => (
-    <View>
-        <Text>Chats</Text>
-    </View>
-)
+class MessageList extends Component {
+
+    render() {
+        return (
+            <Text>Chats</Text>
+        )
+    }
+}
+
+export default MessageList;

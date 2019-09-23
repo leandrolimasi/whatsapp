@@ -94,7 +94,7 @@ export const sendMessage = (message, contactName, contactEmail) => {
                             .ref(`user_messages/${contactEmailB64}/${userEmailB64}`)
                             .set({ name: userData.name, email: userEmail });
 
-                    }); 
+                    });
             });
     }
 }
@@ -104,11 +104,10 @@ export const chatsUserFetch = contactEmail => {
     const { currentUser } = firebase.auth();
     const userMailB64 = base64.encode(currentUser.email);
     const contactEmailB64 = base64.encode(contactEmail);
-
     return dispatch => {
         firebase.database().ref(`messages/${userMailB64}/${contactEmailB64}`)
             .on("value", snapshot => {
-                dispatch({ type: LIST_MESSAGE_USER , payload: snapshot.val()})
+                dispatch({ type: LIST_MESSAGE_USER, payload: snapshot.val() })
             })
     }
 }
