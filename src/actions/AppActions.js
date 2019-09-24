@@ -105,7 +105,7 @@ export const chatsUserFetch = contactEmail => {
     const userMailB64 = base64.encode(currentUser.email);
     const contactEmailB64 = base64.encode(contactEmail);
     return dispatch => {
-        firebase.database().ref(`messages/${userMailB64}/${contactEmailB64}`)
+        firebase.database().ref(`message/${userMailB64}/${contactEmailB64}`)
             .on("value", snapshot => {
                 dispatch({ type: LIST_MESSAGE_USER, payload: snapshot.val() })
             })

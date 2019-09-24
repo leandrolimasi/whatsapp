@@ -14,7 +14,6 @@ class Messages extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        debugger;
         this._createDataSource(nextProps.messageList);
     }
 
@@ -28,12 +27,11 @@ class Messages extends Component {
     }
 
     _renderItem(data) {
-        debugger;
         return (
 
             <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#CCC' }}>
-                <Text style={{ fontSize: 25 }}>{data.text.message}</Text>
-                <Text style={{ fontSize: 18 }}>{data.text.type}</Text>
+                <Text style={{ fontSize: 25 }}>{data.item.message}</Text>
+                <Text style={{ fontSize: 18 }}>{data.item.type}</Text>
             </View>
         )
     }
