@@ -27,11 +27,18 @@ class Messages extends Component {
     }
 
     _renderItem(data) {
+
+        if (data.item.type === 'e') {
+            return (
+                <View style={{ alignItems: "flex-end", marginTop: 5, marginBottom: 5, marginLeft: 40 }}>
+                    <Text style={{ fontSize: 18, color: "#000", padding: 10, backgroundColor: "#dbf5b4", elevation: 1 }}>{data.item.message}</Text>
+                </View>
+            )
+        }
         return (
 
-            <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#CCC' }}>
-                <Text style={{ fontSize: 25 }}>{data.item.message}</Text>
-                <Text style={{ fontSize: 18 }}>{data.item.type}</Text>
+            <View style={{ alignItems: 'flex-start', marginTop: 5, marginBottom: 5, marginLeft: 40 }}>
+                <Text style={{ fontSize: 18, color: '#000', padding: 10, backgroundColor: '#f7f7f7', elevation: 1 }}>{data.item.message}</Text>
             </View>
         )
     }
