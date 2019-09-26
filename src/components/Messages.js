@@ -14,6 +14,9 @@ class Messages extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (this.props.contactEmail != nextProps.contactEmail) {
+            this.props.chatsUserFetch(nextProps.contactEmail);
+        }
         this._createDataSource(nextProps.messageList);
     }
 
