@@ -3,7 +3,7 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import TabBarMenu from './TabBarMenu';
 import Contacts from './Contacts';
-import Chats from './Chats';
+import MessageList from './MessageList';
 
 export default class Home extends Component {
     state = {
@@ -22,7 +22,7 @@ export default class Home extends Component {
                 navigationState={this.state}
                 renderTabBar={this._renderTabBar}
                 renderScene={SceneMap({
-                    first: Chats,
+                    first: MessageList,
                     second: Contacts,
                 })}
                 onIndexChange={index => this.setState({ index })}

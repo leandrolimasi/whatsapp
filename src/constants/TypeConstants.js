@@ -15,3 +15,4 @@ export const LIST_CONTACT_USER = 'list_contact_user';
 export const MODIFY_MESSAGE = 'modify_message';
 export const SEND_MESSAGE_SUCCESS = 'send_message_success';
 export const LIST_MESSAGE_USER = 'list_message_user';
+export const LIST_CHAT_USER = 'list_chat_user';
