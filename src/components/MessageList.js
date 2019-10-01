@@ -1,12 +1,14 @@
-import React, {Component} from 'react';
-import { View, Text, FlatList } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, FlatList, TouchableHighlight } from 'react-native';
 import { chatListUserFetch } from '../actions/AppActions';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class MessageList extends Component {
 
     componentWillMount() {
         this.props.chatListUserFetch();
+        this._createDataSource(this.props.messageList);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -17,15 +19,29 @@ class MessageList extends Component {
         this.setState({ messageList });
     }
 
+    _renderItem(data) {
+        return (
+            <TouchableHighlight onPress={() => false}>
+                <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#CCC' }}>
+                    <Text style={{ fontSize: 25 }}>{data.item.name}</Text>
+                </View>
+            </TouchableHighlight>
+        )
+    }
+
     render() {
         return (
-            <Text>Chats</Text>
+            <FlatList
+                data={this.state.messageList}
+                renderItem={this._renderItem}
+                keyExtractor={(item, index) => index.toString()}
+            />
         )
     }
 }
 
 const mapStateToProps = state => {
-    const messageList = _.map(state.ListMessageReducer, (val, uid) => {
+    const messageList = _.map(state.ListChatReducer, (val, uid) => {
         return { ...val, uid };
     });
     return {

@@ -100,7 +100,6 @@ export const sendMessage = (message, contactName, contactEmail) => {
 }
 
 export const chatsUserFetch = contactEmail => {
-
     const { currentUser } = firebase.auth();
     const userMailB64 = base64.encode(currentUser.email);
     const contactEmailB64 = base64.encode(contactEmail);
@@ -113,7 +112,6 @@ export const chatsUserFetch = contactEmail => {
 }
 
 export const chatListUserFetch = () => {
-
     const { currentUser } = firebase.auth();
     return dispatch => {
         let userEmailB64 = base64.encode(currentUser.email);

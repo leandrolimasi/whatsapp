@@ -42,7 +42,7 @@ class Contacts extends Component {
 }
 
 const mapStateToProps = state => {
-    const contacts = _.map(state.ContactListReducer, (val, uid) => {
+    const contacts = _.map(state.ListContactReducer, (val, uid) => {
         return { ...val, uid }
     });
     return { contacts };
