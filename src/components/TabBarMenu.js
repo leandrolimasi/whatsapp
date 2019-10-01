@@ -4,6 +4,7 @@ import { TabBar } from 'react-native-tab-view';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { enableContactRegister } from '../actions/AppActions';
+import firebase from 'firebase';
 
 const TabBarMenu = props => (
     <View style={{ backgroundColor: "#115E54", elevation: 4, marginBottom: 6 }}>
@@ -22,7 +23,11 @@ const TabBarMenu = props => (
                     </TouchableHighlight>
                 </View>
                 <View style={{ justifyContent: "center" }}>
-                    <Text style={{ fontSize: 20, color: "#FFF" }} >Sair</Text>
+                    <TouchableHighlight onPress={() =>
+                        firebase.auth().signOut().then(() => Actions.formLogin())
+                    }>
+                        <Text style={{ fontSize: 20, color: "#FFF" }} >Logout</Text>
+                    </TouchableHighlight>
                 </View>
             </View>
         </View>

@@ -28,7 +28,7 @@ export default (state = INITIAL_STATE, action) => {
         case REGISTER_USER_ERROR: return { ...state, registerError: action.payload, loadingRegister: false }
         case REGISTER_USER_SUCCESS: return { ...state, name: '', password: '', loadingRegister: false }
         case AUTHENTICATE_ERROR: return { ...state, authenticateError: action.payload, loadingLogin: false }
-        case AUTHENTICATE_SUCCESS: return { ...state, authenticateError: '' }
+        case AUTHENTICATE_SUCCESS: return { ...state, ...INITIAL_STATE }
         case AUTHENTICATE_LOADING: return { ...state, loadingLogin: true }
         case REGISTER_LOADING: return { ...state, loadingRegister: true }
         default: return state;
